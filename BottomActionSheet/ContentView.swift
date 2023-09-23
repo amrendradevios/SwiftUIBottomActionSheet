@@ -11,6 +11,11 @@ struct ContentView: View {
 
     @State var isPresented: Bool = false
     @State var selectedOption: String = ""
+    var actions: [ActionSheet] = ActionSheet.actions()
+    var actionCount = 0
+    init() {
+        actionCount = actions.count
+    }
     var body: some View {
         VStack(alignment: .center, spacing: 16, content: {
             Button {
@@ -34,7 +39,7 @@ struct ContentView: View {
                     .presentationDragIndicator(.hidden)
                     .presentationCornerRadius(0)
                     .presentationBackground(Color.black.opacity(0.0))
-                    .presentationDetents([.fraction(0.35)])
+                    .presentationDetents([.height(CGFloat(ActionSheet.actions().count * 48 + (actionCount * 8) + 100))])
             })
             
             Text("Selected option:  \(selectedOption.isEmpty ? "None" : selectedOption)")

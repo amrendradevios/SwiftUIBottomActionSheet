@@ -29,11 +29,10 @@ struct ActionSheetView: View {
                             } label: {
                                 HStack(alignment: .center, spacing: 8) {
                                     Image(item.image).resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25)
-                                    Spacer()
-                                    Text(item.name).foregroundColor(.black)
+                                    Text(item.name).foregroundColor(.black).lineLimit(nil).frame(alignment: .center)
                                     Spacer()
                                 }.padding()
-                            }.frame(width: reader.size.width, height: 47)
+                            }
                             Divider().frame(width: reader.size.width, height: 1).foregroundColor(.gray)
                         })
                     }
@@ -41,11 +40,13 @@ struct ActionSheetView: View {
                     Color.white
                 }.clipShape(RoundedRectangle(cornerRadius: 8))
                 
-                Button("Cancel") {
+                Button(action: {
                     dismiss()
-                }.frame(width: reader.size.width, height: 48).foregroundColor(.black).background {
-                    Color.white
-                }.clipShape(RoundedRectangle(cornerRadius: 8))
+                }, label: {
+                    Text("Cancel").foregroundColor(.black).frame(width: reader.size.width, height: 48).foregroundColor(.black).background {
+                        Color.white
+                    }.clipShape(RoundedRectangle(cornerRadius: 8))
+                })
             })
         }.padding()
     }
